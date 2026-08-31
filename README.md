@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Monday_logo.svg/2560px-Monday_logo.svg.png" alt="Monday.com Logo" width="200" />
-  <h1 align="center">Skylark BI Agent</h1>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Monday_logo.svg/2560px-Monday_logo.svg.png" alt="Monday.com Logo" width="180" />
+  <h1 align="center">Skylark Drones: Full-Stack Developer Assignment</h1>
   <p align="center">
-    <strong>An autonomous, AI-powered Business Intelligence Agent for Monday.com</strong>
+    <strong>An autonomous AI Business Intelligence Agent connecting LLMs to Monday.com</strong>
   </p>
   
   <p align="center">
@@ -15,42 +15,37 @@
 
 <br />
 
-## 🚀 Overview
+## 🎯 Assignment Objective
 
-The **Skylark BI Agent** is a production-grade intelligent interface that connects directly to your Monday.com workspace. Built with modern web technologies, it allows executives and project managers to interact with live CRM and project execution data using natural language. 
+This repository contains the submission for the **Full-Stack Developer** role at Skylark Drones. 
 
-Ask questions like *"What is our total pipeline value?"* or *"Show me all overdue work orders"* and the agent will securely fetch, analyze, and present the data from Monday.com in real-time.
+The objective was to build a specialized Business Intelligence (BI) Chatbot that can seamlessly integrate with the Monday.com API, fetch live workspace data (Deals and Work Orders), and process it intelligently using an LLM.
 
-## ✨ Core Features
-
-- **🧠 Advanced AI Reasoning**: Powered by **NVIDIA NIM (Llama 3.2 11B Vision Instruct)** for highly analytical, data-driven responses, with an automatic fallback to **Google Gemini 3.6 Flash**.
-- **🔄 Real-time Data Sync**: Connects directly to Monday.com's v2 GraphQL API to pull live Deals and Work Order data.
-- **🎨 Premium UI/UX**: A sleek, dark-mode-first interface utilizing glassmorphism, fluid animations, and a responsive chat layout built with Tailwind CSS.
-- **🛠️ Autonomous Tool Calling**: The agent inherently knows when to trigger API tools to fetch specific board data based on user intent.
-- **🛡️ Production Hardened**: Implements robust error handling, strict TypeScript typings, and data sanitization pipelines for enterprise use.
+### 🌟 Key Achievements in this Submission:
+- **Autonomous Tool Calling**: The agent dynamically parses natural language questions, decides which Monday.com board to query, and fetches only the relevant data.
+- **Enterprise-Grade AI**: Implements **NVIDIA NIM** (Llama 3.2 11B Vision Instruct) as the primary reasoning engine, with a seamless fallback to Google Gemini.
+- **Robust Data Pipeline**: Uses Monday.com's `v2` GraphQL API with custom TypeScript parsers to clean messy CRM data (handling nulls, missing columns, and nested JSON values).
+- **Premium User Experience**: Built a responsive, dark-mode-first chat interface featuring glassmorphism and fluid streaming responses (Vercel AI SDK).
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture & Technical Decisions
 
-The application is built on a unified Next.js App Router architecture:
-
-- **Frontend**: React Server Components (RSC) with a stateful chat interface (`ai/react`).
-- **Backend Edge**: Next.js API Routes acting as the LLM orchestrator.
-- **Data Layer**: Custom GraphQL clients configured for Monday.com with specialized schema parsers to clean complex board data (handling status columns, nested values, and timelines).
+1. **Framework (Next.js App Router)**: Chosen for its unified frontend/backend capabilities. React Server Components and API routes keep the API keys completely hidden from the client browser.
+2. **AI Orchestration (Vercel AI SDK v7)**: Provides a standardized `streamText` interface capable of streaming both UI elements and text tokens natively to React.
+3. **API Integration (GraphQL)**: Uses `graphql-request` for typed, lightweight queries against Monday.com's endpoints, avoiding bloated SDK wrappers.
+4. **Resilience**: The backend route gracefully handles API rate limits, invalid tokens, and missing data points without crashing the client UI.
 
 ---
 
-## 🛠️ Getting Started
+## 🛠️ How to Run Locally
 
 ### Prerequisites
-- Node.js 18.17 or later
-- A Monday.com Personal Access Token (`v2` API)
-- An AI Provider Key (NVIDIA NIM or Google Gemini)
+- Node.js 18.17+
+- A Monday.com Personal Access Token
+- An NVIDIA NIM or Google Gemini API Key
 
 ### 1. Installation
-
-Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/rahul2112-code/skylark.git
@@ -58,18 +53,18 @@ cd skylark
 npm install
 ```
 
-### 2. Environment Configuration
+### 2. Environment Variables
 
-Copy the example environment variables file:
+Create a `.env.local` file at the root of the project:
 
 ```bash
 cp .env.example .env.local
 ```
 
-Populate `.env.local` with your secure credentials:
+Fill in your evaluation credentials:
 
 ```env
-# AI Provider Keys (NVIDIA is primary, Gemini is fallback)
+# AI Provider Keys
 NVIDIA_API_KEY=your_nvidia_key_here
 NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_key_here
 GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_key_here
@@ -80,36 +75,13 @@ MONDAY_DEALS_BOARD_ID=your_deals_board_id
 MONDAY_WORK_ORDERS_BOARD_ID=your_work_orders_board_id
 ```
 
-### 3. Running Locally
-
-Start the Next.js development server with Turbopack for lightning-fast compilation:
+### 3. Start the Server
 
 ```bash
 npm run dev
 ```
 
-The agent will be available at **[http://localhost:3000](http://localhost:3000)**.
+Open **[http://localhost:3000](http://localhost:3000)** in your browser to evaluate the agent.
 
 ---
-
-## 🔒 Security Best Practices
-
-- **Never commit `.env.local`**: This file is correctly ignored in `.gitignore`.
-- **API Key Scopes**: Ensure your Monday.com token is restricted to `read:boards` and `read:workspaces` if write access is not required.
-- **Client/Server Boundary**: All API requests to Monday.com and the LLM providers happen exclusively server-side. No API keys are ever exposed to the client bundle.
-
----
-
-## 🚢 Deployment
-
-The easiest way to deploy this application is via [Vercel](https://vercel.com/new).
-
-1. Push your code to your GitHub repository.
-2. Import the project into Vercel.
-3. In the Vercel dashboard, go to **Settings > Environment Variables** and paste the contents of your `.env.local` file.
-4. Click **Deploy**.
-
----
-<div align="center">
-  <i>Engineered for Skylark Drones to transform data into decisions.</i>
-</div>
+*Developed by Rahul Reddy for the Skylark Drones Engineering Team.*
