@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Monday.com Business Intelligence Agent
 
-## Getting Started
+A production-ready Business Intelligence agent powered by Next.js, Vercel AI SDK, and NVIDIA NIM (Llama 3.2 11B Vision Instruct) / Google Gemini. 
 
-First, run the development server:
+This agent connects directly to your Monday.com workspace to analyze data from Deals and Work Orders boards in real-time. It features a premium, modern dark-mode UI with glassmorphism effects and provides instant, data-backed insights.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Live Monday.com Integration:** Real-time fetching of Deals and Work Orders data.
+- **AI-Powered Analysis:** Ask natural language questions about your pipeline, overdue tasks, and sector performance.
+- **Dual AI Provider Support:** Uses NVIDIA NIM (Llama models) natively, with an automatic fallback to Google Gemini.
+- **Premium UI:** Built with Tailwind CSS, lucide-react, and sleek animations.
+- **Production Hardened:** Robust error handling, strict TypeScript typings, and optimized caching logic.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework:** Next.js 14 (App Router)
+- **AI Framework:** Vercel AI SDK v7
+- **AI Models:** NVIDIA NIM (`meta/llama-3.2-11b-vision-instruct`), Google Gemini (`gemini-3.6-flash`)
+- **Styling:** Tailwind CSS + Radix Colors
+- **API Integration:** GraphQL Request (Monday.com API v2)
 
-## Learn More
+## Setup Instructions
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd monday-bi-agent
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Configure Environment Variables:**
+   Copy the example environment file and fill in your keys:
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+   *Required Keys in `.env.local`:*
+   - `NVIDIA_API_KEY`: Get from [build.nvidia.com](https://build.nvidia.com) (or `NEXT_PUBLIC_GEMINI_API_KEY` for Google)
+   - `MONDAY_API_TOKEN`: Your Monday.com Personal Access Token
+   - `MONDAY_DEALS_BOARD_ID`: ID for your sales pipeline board
+   - `MONDAY_WORK_ORDERS_BOARD_ID`: ID for your work orders board
 
-## Deploy on Vercel
+4. **Run the Development Server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to use the application.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## GitHub Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To deploy this project:
+1. Push this repository to your GitHub account.
+2. Connect the repository to [Vercel](https://vercel.com).
+3. Ensure you add all your `.env.local` variables into Vercel's Environment Variables settings before deploying.
+
+---
+*Built for Skylark Drones.*
