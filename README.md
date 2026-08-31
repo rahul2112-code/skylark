@@ -38,14 +38,24 @@ The objective was to build a specialized Business Intelligence (BI) Chatbot that
 
 ---
 
-## 🛠️ How to Run Locally
+## 🛠️ Getting Started
 
 ### Prerequisites
-- Node.js 18.17+
-- A Monday.com Personal Access Token
-- An NVIDIA NIM or Google Gemini API Key
+- Node.js 18.17 or later
+- A Monday.com Personal Access Token (`v2` API)
+- An AI Provider Key (NVIDIA NIM or Google Gemini)
 
-### 1. Installation
+### 1. Monday.com Setup Instructions
+To run this project, you must connect it to a Monday.com workspace with the imported assignment data.
+1. Create a free Monday.com account and navigate to your workspace.
+2. Create two new boards: **Deals** and **Work Orders**.
+3. Import the provided `Deal funnel Data.xlsx` and `Work_Order_Tracker Data.xlsx` into their respective boards.
+4. Go to **Profile Picture > Developers > Developer Center > My Access Tokens** and generate a Personal Access Token (PAT).
+5. Copy the **Board IDs** from the URL of each board (e.g., `monday.com/boards/123456789` -> ID is `123456789`).
+
+### 2. Installation
+
+Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/rahul2112-code/skylark.git
@@ -53,7 +63,7 @@ cd skylark
 npm install
 ```
 
-### 2. Environment Variables
+### 3. Environment Variables
 
 Create a `.env.local` file at the root of the project:
 
