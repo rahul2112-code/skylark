@@ -1,62 +1,115 @@
-# Monday.com Business Intelligence Agent
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Monday_logo.svg/2560px-Monday_logo.svg.png" alt="Monday.com Logo" width="200" />
+  <h1 align="center">Skylark BI Agent</h1>
+  <p align="center">
+    <strong>An autonomous, AI-powered Business Intelligence Agent for Monday.com</strong>
+  </p>
+  
+  <p align="center">
+    <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js" alt="Next.js" /></a>
+    <a href="https://sdk.vercel.ai/"><img src="https://img.shields.io/badge/AI_SDK-v7-white?style=for-the-badge&logo=vercel" alt="Vercel AI SDK" /></a>
+    <a href="https://build.nvidia.com/"><img src="https://img.shields.io/badge/NVIDIA-NIM-76B900?style=for-the-badge&logo=nvidia" alt="NVIDIA" /></a>
+    <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" /></a>
+  </p>
+</div>
 
-A production-ready Business Intelligence agent powered by Next.js, Vercel AI SDK, and NVIDIA NIM (Llama 3.2 11B Vision Instruct) / Google Gemini. 
+<br />
 
-This agent connects directly to your Monday.com workspace to analyze data from Deals and Work Orders boards in real-time. It features a premium, modern dark-mode UI with glassmorphism effects and provides instant, data-backed insights.
+## 🚀 Overview
 
-## Features
+The **Skylark BI Agent** is a production-grade intelligent interface that connects directly to your Monday.com workspace. Built with modern web technologies, it allows executives and project managers to interact with live CRM and project execution data using natural language. 
 
-- **Live Monday.com Integration:** Real-time fetching of Deals and Work Orders data.
-- **AI-Powered Analysis:** Ask natural language questions about your pipeline, overdue tasks, and sector performance.
-- **Dual AI Provider Support:** Uses NVIDIA NIM (Llama models) natively, with an automatic fallback to Google Gemini.
-- **Premium UI:** Built with Tailwind CSS, lucide-react, and sleek animations.
-- **Production Hardened:** Robust error handling, strict TypeScript typings, and optimized caching logic.
+Ask questions like *"What is our total pipeline value?"* or *"Show me all overdue work orders"* and the agent will securely fetch, analyze, and present the data from Monday.com in real-time.
 
-## Tech Stack
+## ✨ Core Features
 
-- **Framework:** Next.js 14 (App Router)
-- **AI Framework:** Vercel AI SDK v7
-- **AI Models:** NVIDIA NIM (`meta/llama-3.2-11b-vision-instruct`), Google Gemini (`gemini-3.6-flash`)
-- **Styling:** Tailwind CSS + Radix Colors
-- **API Integration:** GraphQL Request (Monday.com API v2)
-
-## Setup Instructions
-
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repo-url>
-   cd monday-bi-agent
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment Variables:**
-   Copy the example environment file and fill in your keys:
-   ```bash
-   cp .env.example .env.local
-   ```
-   
-   *Required Keys in `.env.local`:*
-   - `NVIDIA_API_KEY`: Get from [build.nvidia.com](https://build.nvidia.com) (or `NEXT_PUBLIC_GEMINI_API_KEY` for Google)
-   - `MONDAY_API_TOKEN`: Your Monday.com Personal Access Token
-   - `MONDAY_DEALS_BOARD_ID`: ID for your sales pipeline board
-   - `MONDAY_WORK_ORDERS_BOARD_ID`: ID for your work orders board
-
-4. **Run the Development Server:**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) to use the application.
-
-## GitHub Deployment
-
-To deploy this project:
-1. Push this repository to your GitHub account.
-2. Connect the repository to [Vercel](https://vercel.com).
-3. Ensure you add all your `.env.local` variables into Vercel's Environment Variables settings before deploying.
+- **🧠 Advanced AI Reasoning**: Powered by **NVIDIA NIM (Llama 3.2 11B Vision Instruct)** for highly analytical, data-driven responses, with an automatic fallback to **Google Gemini 3.6 Flash**.
+- **🔄 Real-time Data Sync**: Connects directly to Monday.com's v2 GraphQL API to pull live Deals and Work Order data.
+- **🎨 Premium UI/UX**: A sleek, dark-mode-first interface utilizing glassmorphism, fluid animations, and a responsive chat layout built with Tailwind CSS.
+- **🛠️ Autonomous Tool Calling**: The agent inherently knows when to trigger API tools to fetch specific board data based on user intent.
+- **🛡️ Production Hardened**: Implements robust error handling, strict TypeScript typings, and data sanitization pipelines for enterprise use.
 
 ---
-*Built for Skylark Drones.*
+
+## 🏗️ Architecture
+
+The application is built on a unified Next.js App Router architecture:
+
+- **Frontend**: React Server Components (RSC) with a stateful chat interface (`ai/react`).
+- **Backend Edge**: Next.js API Routes acting as the LLM orchestrator.
+- **Data Layer**: Custom GraphQL clients configured for Monday.com with specialized schema parsers to clean complex board data (handling status columns, nested values, and timelines).
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- Node.js 18.17 or later
+- A Monday.com Personal Access Token (`v2` API)
+- An AI Provider Key (NVIDIA NIM or Google Gemini)
+
+### 1. Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/rahul2112-code/skylark.git
+cd skylark
+npm install
+```
+
+### 2. Environment Configuration
+
+Copy the example environment variables file:
+
+```bash
+cp .env.example .env.local
+```
+
+Populate `.env.local` with your secure credentials:
+
+```env
+# AI Provider Keys (NVIDIA is primary, Gemini is fallback)
+NVIDIA_API_KEY=your_nvidia_key_here
+NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_key_here
+GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_key_here
+
+# Monday.com Configuration
+MONDAY_API_TOKEN=your_monday_personal_access_token
+MONDAY_DEALS_BOARD_ID=your_deals_board_id
+MONDAY_WORK_ORDERS_BOARD_ID=your_work_orders_board_id
+```
+
+### 3. Running Locally
+
+Start the Next.js development server with Turbopack for lightning-fast compilation:
+
+```bash
+npm run dev
+```
+
+The agent will be available at **[http://localhost:3000](http://localhost:3000)**.
+
+---
+
+## 🔒 Security Best Practices
+
+- **Never commit `.env.local`**: This file is correctly ignored in `.gitignore`.
+- **API Key Scopes**: Ensure your Monday.com token is restricted to `read:boards` and `read:workspaces` if write access is not required.
+- **Client/Server Boundary**: All API requests to Monday.com and the LLM providers happen exclusively server-side. No API keys are ever exposed to the client bundle.
+
+---
+
+## 🚢 Deployment
+
+The easiest way to deploy this application is via [Vercel](https://vercel.com/new).
+
+1. Push your code to your GitHub repository.
+2. Import the project into Vercel.
+3. In the Vercel dashboard, go to **Settings > Environment Variables** and paste the contents of your `.env.local` file.
+4. Click **Deploy**.
+
+---
+<div align="center">
+  <i>Engineered for Skylark Drones to transform data into decisions.</i>
+</div>
