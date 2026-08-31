@@ -94,4 +94,4 @@ npm run dev
 Open **[http://localhost:3000](http://localhost:3000)** in your browser to evaluate the agent.
 
 ---
-*Developed by Rahul Reddy for the Skylark Drones Engineering Team.*
+*Developed by Rahul Reddy*
